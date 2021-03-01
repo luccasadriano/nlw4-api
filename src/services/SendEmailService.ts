@@ -22,6 +22,7 @@ class SendEmailService {
          this.client = transporter
       })
    }
+
    async execute(to: string, subject: string, variables: object, path: string) {
 
       // console.log(variables)
@@ -29,7 +30,7 @@ class SendEmailService {
 
       const emailTemplateParse = handlebars.compile(templateFileContent)
 
-      const html = emailTemplateParse({ variables })
+      const html = emailTemplateParse(variables)
 
       const message = await this.client.sendMail({
          to,
